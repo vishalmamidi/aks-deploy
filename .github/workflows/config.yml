@@ -109,7 +109,7 @@ jobs:
           resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
       
       - name: Deploy using Helm
-        run: helm upgrade --install demo helm-demo/ --set image.tag=${{ env.IMG_TAG }} --namespace demo-namespace --create-namespace --wait
+        run: helm upgrade --install ${{ github.event.repository.name }} helm-${{ github.event.repository.name }}/ --set image.tag=${{ env.IMG_TAG }} --namespace demo-namespace --create-namespace --wait
                  
       - name: Verify Deployment
-        run: kubectl rollout status deployment/demo -n demo-namespace
+        run: kubectl rollout status deployment/${{ github.event.repository.name }} -n demo-namespace
