@@ -3,7 +3,7 @@ name: build and push image to github container registry
 
 on:
   push:
-    branches: [ azure-aks ]
+    branches: [ main ]
 
   #Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -18,7 +18,7 @@ env:
 jobs:
   build-and-push-image:
     name: build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
@@ -76,7 +76,7 @@ jobs:
     name: deployment
     needs:
       - build-and-push-image
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       packages: write
