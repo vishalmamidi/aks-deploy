@@ -1,12 +1,12 @@
-# Default values for helm-demo.
+# Default values for helm-aks-deploy.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  name: demo-container
-  repository: ghcr.io/vishalmamidi/demo
+  name: aks-deploy-container
+  repository: ghcr.io/vishalmamidi/aks-deploy
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -41,7 +41,7 @@ securityContext: {}
 service:
   type: LoadBalancer
   port: 8080
-  name: demo
+  name: aks-deploy
   namespace: demo-namespace
 
 ingress:
@@ -86,4 +86,4 @@ tolerations: []
 affinity: {}
 
 deployment:
-  name: demo
+  name: aks-deploy

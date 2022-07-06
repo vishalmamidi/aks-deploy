@@ -5,19 +5,19 @@
 ### install / upgrade release
 
   ```shell
-  helm upgrade --install demo helm-demo/ --set image.tag=latest --namespace demo-namespace --create-namespace --wait
+  helm upgrade --install aks-deploy helm-aks-deploy/ --set image.tag=0.2.1 --namespace demo-namespace --create-namespace --wait
   ```
 
   ### uninstall release
 
   ```shell
-  helm uninstall demo --namespace demo-namespace
+  helm uninstall aks-deploy --namespace demo-namespace
   ```
 
   ### check past history of releases
 
   ```shell
-  helm history demo --namespace demo-namespace
+  helm history aks-deploy --namespace demo-namespace
   ```
 
   ```shell
@@ -27,7 +27,7 @@
   ### rollback to old releases
 
   ```shell
-  helm rollback demo --namespace demo-namespace
+  helm rollback aks-deploy --namespace demo-namespace
   ```
 
 
