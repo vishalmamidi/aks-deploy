@@ -37,7 +37,6 @@ spec:
           ports:
             - name: http
               containerPort: {{ .Values.image.containerPort}}
-              protocol: TCP
           livenessProbe:
             httpGet:
               path: /
@@ -49,7 +48,11 @@ spec:
           env:
           - name: MONGODB_URL
             value: "localhost"
-
+          volumeMounts:
+          - name: aks-deploy-secret
+            mountPath: "/var/run/secrets/aks-deploy-secret"
+            readOnly: true
+          
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -64,3 +67,8 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
+      volumes:
+      - name: aks-deploy-secret
+        secret:
+          secretName: aks-deploy-secret-credentials 
