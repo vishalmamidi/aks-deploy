@@ -48,10 +48,6 @@ spec:
           env:
           - name: MONGODB_URL
             value: "localhost"
-          volumeMounts:
-          - name: aks-deploy-secret
-            mountPath: "/var/run/secrets/aks-deploy-secret"
-            readOnly: true
           
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
@@ -67,8 +63,3 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-
-      volumes:
-      - name: aks-deploy-secret
-        secret:
-          secretName: aks-deploy-secret-credentials 
