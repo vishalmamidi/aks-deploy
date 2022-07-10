@@ -1,4 +1,5 @@
 {{- if .Values.ingress.enabled -}}
+{{- $fullName := .Values.service.name . -}}
 {{- $svcPort := .Values.service.port -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
@@ -14,9 +15,9 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ .Values.service.name }}
+  name: {{ $fullName }}
   labels:
-    {{- include "helm-aks-deploy.labels" . | nindent 4 }}
+    {{ $fullName }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -48,11 +49,11 @@ spec:
             backend:
               {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-                name: {{ .Values.service.name }}
+                name: {{ $fullName }}
                 port:
                   number: {{ $svcPort }}
               {{- else }}
-              serviceName: {{ .Values.service.name }}
+              serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
               {{- end }}
           {{- end }}
