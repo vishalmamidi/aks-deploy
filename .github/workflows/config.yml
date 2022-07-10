@@ -117,7 +117,16 @@ jobs:
         with:
           cluster-name: ${{ env.CLUSTER_NAME }}
           resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
-      
+
+      - name: downcase REPO_LC
+        run: |
+          echo "REPO_LC=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+
+      - name: print REPO_LC
+        run: |
+          echo "${REPO_LC}"
+
+
       - name: Deploy using Helm
         run: helm upgrade --install ${{ github.event.repository.name }} helm-${{ github.event.repository.name }}/ --set image.tag=${{ env.IMAGE_TAG }} --namespace demo-namespace --create-namespace --wait
                  
