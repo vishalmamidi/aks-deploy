@@ -46,7 +46,7 @@ service:
   namespace: demo-namespace
 
 ingress:
-  enabled: true
+  enabled: false
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
