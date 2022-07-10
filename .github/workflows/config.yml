@@ -18,7 +18,7 @@ env:
 jobs:
   build-and-push-image:
     name: build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
@@ -94,7 +94,7 @@ jobs:
     name: deployment
     needs:
       - build-and-push-image
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       packages: write
