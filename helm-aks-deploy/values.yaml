@@ -12,7 +12,8 @@ image:
   tag: ""
   containerPort: 8080
 
-imagePullSecrets: [ghcr-read]
+imagePullSecrets:
+  - name: ghcr-read
 nameOverride: ""
 fullnameOverride: ""
 
