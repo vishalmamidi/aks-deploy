@@ -122,7 +122,7 @@ jobs:
           resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
 
       - name: Prepare helm release name
-      - id: string
+        id: string
         uses: ASzc/change-string-case-action@v2
         with:
           string: ${{ github.event.repository.name }}
