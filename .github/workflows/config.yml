@@ -13,7 +13,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   CLUSTER_NAME: demo-aks
   CLUSTER_RESOURCE_GROUP: my_group
-  IMG_TAG: 0.${{ github.RUN_NUMBER }}.0
+  IMAGE_TAG: 0.${{ github.RUN_NUMBER }}.0
 
 jobs:
   build-and-push-image:
@@ -52,15 +52,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Example step
-        run: |
-          echo "GRAALVM_HOME: $GRAALVM_HOME"
-          echo "JAVA_HOME: $JAVA_HOME"
-          java --version
-          gu --version
-          native-image --version
-
-
       - name: make gradlew executable
         run: chmod +x gradlew
 
@@ -75,7 +66,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=${{ env.IMG_TAG }}
+            type=raw,value=${{ env.IMAGE_TAG }}
+            type=raw,value=latest
           labels: |
             org.opencontainers.image.description="${{ github.event.head_commit.message }}"
 
@@ -106,13 +98,13 @@ jobs:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       
       # below only needed if they are not installed in self hosted runners  
-      - uses: elstudio/action-install-azure-cli@v1
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-      - uses: azure/setup-helm@v3
-      - run: sudo apt install unzip
-      - uses: Azure/setup-kubectl@v3
+      # - uses: elstudio/action-install-azure-cli@v1
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 14
+      # - uses: azure/setup-helm@v3
+      # - run: sudo apt install unzip
+      # - uses: Azure/setup-kubectl@v3
       # above only needed if they are not installed in self hosted runners.
 
       - name: Azure Login
@@ -127,7 +119,7 @@ jobs:
           resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
       
       - name: Deploy using Helm
-        run: helm upgrade --install ${{ github.event.repository.name }} helm-${{ github.event.repository.name }}/ --set image.tag=${{ env.IMG_TAG }} --namespace demo-namespace --create-namespace --wait
+        run: helm upgrade --install ${{ github.event.repository.name }} helm-${{ github.event.repository.name }}/ --set image.tag=${{ env.IMAGE_TAG }} --namespace demo-namespace --create-namespace --wait
                  
       - name: Verify Deployment
         run: kubectl rollout status deployment/${{ github.event.repository.name }} -n demo-namespace
