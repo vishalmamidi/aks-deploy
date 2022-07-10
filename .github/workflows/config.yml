@@ -124,6 +124,13 @@ jobs:
         with:
           string: ${{ github.event.repository.name }}
 
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Deploy using Helm
         run: helm upgrade --install ${{ steps.string.outputs.lowercase }} helm-${{ steps.string.outputs.lowercase }}/ --set image.tag=${{ env.IMAGE_TAG }} --namespace demo-namespace --create-namespace --wait
                  
