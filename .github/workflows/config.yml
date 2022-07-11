@@ -91,8 +91,8 @@ jobs:
       - build-and-push-image
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      packages: write
+      contents: read
+      packages: read
 
     steps:
       - name: Checkout repository
@@ -121,14 +121,8 @@ jobs:
           cluster-name: ${{ env.CLUSTER_NAME }}
           resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
 
-      - name: Prepare helm release name
-        id: string
-        uses: ASzc/change-string-case-action@v2
-        with:
-          string: ${{ github.event.repository.name }}
-
       - name: Deploy using Helm
-        run: helm upgrade --install ${{ steps.string.outputs.lowercase }} helm-${{ steps.string.outputs.lowercase }}/ --set image.tag=${{ env.IMAGE_TAG }} --namespace demo-namespace --create-namespace --wait
+        run: helm upgrade --install ${{ github.event.repository.name }} helm-${{ github.event.repository.name }}/ --set image.tag=${{ env.IMAGE_TAG }} --namespace demo-namespace --create-namespace --wait
                  
       - name: Verify Deployment
-        run: kubectl rollout status deployment/${{ steps.string.outputs.lowercase }} -n demo-namespace
+        run: kubectl rollout status deployment/${{ github.event.repository.name }} -n demo-namespace
