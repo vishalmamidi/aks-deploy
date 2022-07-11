@@ -111,7 +111,7 @@ jobs:
       # above only needed if they are not installed in self hosted runners.
 
 
-      - uses: Azure/aks-set-context@v1
+      - uses: Azure/k8s-set-context@v1
         with:
           method: service-principal
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
