@@ -109,19 +109,18 @@ jobs:
       # - run: sudo apt-get install unzip
       # - uses: Azure/setup-kubectl@v3
       # above only needed if they are not installed in self hosted runners.
+      - name: Azure Login
+        uses: Azure/login@v1.4.5
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-
-      - uses: Azure/k8s-set-context@v1
+      - uses: Azure/k8s-set-context@v2
         with:
           method: service-principal
-          creds: '${{ secrets.AZURE_CREDENTIALS }}'
           cluster-name: demo-aks
           resource-group: my_group
   
-#       - name: Azure Login
-#         uses: Azure/login@v1.4.5
-#         with:
-#           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
     
 #       - name: Set the target Azure Kubernetes Service (AKS) cluster. 
 #         uses: azure/aks-set-context@v2
