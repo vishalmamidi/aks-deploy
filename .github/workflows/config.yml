@@ -116,11 +116,12 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      # add "--public-fqdn" if private cluster
       - name: Set the target Azure Kubernetes Service (AKS) cluster.
         run: |
           az aks get-credentials \
             --resource-group ${{ env.CLUSTER_RESOURCE_GROUP }} \
-            --name ${{ env.CLUSTER_NAME }} --overwrite-existing --public-fqdn
+            --name ${{ env.CLUSTER_NAME }} --overwrite-existing
 
       - name: Deploy using Helm
         run: | 
