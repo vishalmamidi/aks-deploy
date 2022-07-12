@@ -119,7 +119,7 @@ jobs:
       - name: Set the target Azure Kubernetes Service (AKS) cluster.
         run: |
           az aks get-credentials \
-            --resource-group ${{ env.CLUSTER_RESOURCE_GROUP }} \ 
+            --resource-group ${{ env.CLUSTER_RESOURCE_GROUP }} \
             --name ${{ env.CLUSTER_NAME }} --overwrite-existing --public-fqdn
 
       - name: Deploy using Helm
