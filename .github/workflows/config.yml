@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  reusable-workflow:
+  reusable:
     name: "workflows"
     uses: vishalmamidi/workflows/.github/workflows/build-push-deploy.yaml@main
     secrets:
