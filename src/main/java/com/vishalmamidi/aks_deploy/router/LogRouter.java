@@ -1,6 +1,6 @@
-package com.vishalmamidi.demorestlogger.router;
+package com.vishalmamidi.aks_deploy.router;
 
-import com.vishalmamidi.demorestlogger.handler.LogHandler;
+import com.vishalmamidi.aks_deploy.handler.LogHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;

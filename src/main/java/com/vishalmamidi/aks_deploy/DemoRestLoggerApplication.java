@@ -1,4 +1,4 @@
-package com.vishalmamidi.demorestlogger;
+package com.vishalmamidi.aks_deploy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
