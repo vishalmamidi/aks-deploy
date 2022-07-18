@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  infra:
+  reusable-workflow:
     uses: vishalmamidi/workflows/.github/workflows/build-push-deploy.yaml@main
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
