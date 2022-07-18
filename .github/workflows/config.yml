@@ -10,6 +10,6 @@ on:
 
 jobs:
   infra:
-    uses: vishalmamidi/workflows/workflows/build-push-deploy.yaml@main
+    uses: vishalmamidi/workflows/.github/workflows/build-push-deploy.yaml@main
     secrets:
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
