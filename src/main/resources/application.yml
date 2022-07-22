@@ -2,6 +2,8 @@ server:
   port: 8080
 spring:
   application:
-    name: demo-rest
+    name: aks-deploy
 my-log:
   path: /var/log/
+
+management.endpoint.health.probes.enabled: true
