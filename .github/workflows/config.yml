@@ -14,5 +14,8 @@ jobs:
     uses: vishalmamidi/workflows/.github/workflows/gradle-build.yaml@main
 
   reusable-deploy:
+    needs:
+      reusable-build
     name: "reusable"
     uses: vishalmamidi/workflows/.github/workflows/aks-deploy.yaml@main
+    secrets: inherit
