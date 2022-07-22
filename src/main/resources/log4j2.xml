@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
-    <Properties>
-        <Property name="appName">demo-rest</Property>
-        <Property name="logPath">var/log/</Property>
-    </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <!-- normal pattern -->
              <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-            <!-- normal pattern -->
+            <!-- json pattern -->
 <!--            <JsonTemplateLayout eventTemplateUri="classpath:JsonTemplateLayout.json">-->
-<!--                <EventTemplateAdditionalField key="service_name" value="${appName}"/>-->
 <!--            </JsonTemplateLayout>-->
-            <MarkerFilter marker="vishal" onMatch="DENY" onMismatch="ACCEPT"/>
         </Console>
 
     </Appenders>

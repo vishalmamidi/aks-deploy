@@ -3,7 +3,7 @@
 ## generated YAML
 
 ```bash
-kubectl create deployment demo-rest --image=vishalmamidi/demo-rest --dry-run=client -o=yaml > deployment.yaml
+kubectl create deployment aks-deploy --image=vishalmamidi/aks-deploy --dry-run=client -o=yaml > deployment.yaml
 ```
 
 ```bash
@@ -11,7 +11,7 @@ echo --- >> deployment.yaml
 ```
 
 ```bash
-kubectl create service clusterip demo-rest --tcp=8080:8080 --dry-run=client  -o=yaml >> deployment.yaml
+kubectl create service clusterip aks-deploy --tcp=8080:8080 --dry-run=client  -o=yaml >> deployment.yaml
 ```
 
 ## apply generated YAML
@@ -29,5 +29,5 @@ kubectl get all
 ## port forward
 
 ```bash
-kubectl port-forward service/demo-rest 8080:8080
+kubectl port-forward service/aks-deploy 8080:8080
 ```
