@@ -5,7 +5,7 @@
 ### install / upgrade release
 
   ```shell
-  helm upgrade --install aks-deploy helm-aks-deploy/ --set image.tag=0.2.1 --namespace demo-namespace --create-namespace --wait
+  helm upgrade --install aks-deploy helm-aks-deploy/ --set image.tag=latest --namespace demo-namespace --create-namespace --wait
   ```
 
   ### uninstall release
