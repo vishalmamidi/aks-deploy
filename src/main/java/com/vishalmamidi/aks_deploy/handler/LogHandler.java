@@ -1,4 +1,4 @@
-package com.vishalmamidi.demorestlogger.handler;
+package com.vishalmamidi.aks_deploy.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,6 +15,6 @@ public class LogHandler {
         log.info("logging: {}", request);
         return ServerResponse.status(HttpStatus.ACCEPTED)
                 .contentType(APPLICATION_JSON)
-                .body(Mono.just("Awasome!, Deploy Successfull.\ncurrent time:"+java.time.LocalDateTime.now().toString()), String.class);
+                .body(Mono.just("Awasome!, Deploy Successfull.\ncurrent time:"+ java.time.LocalDateTime.now()), String.class);
     }
 }

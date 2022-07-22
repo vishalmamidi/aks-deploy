@@ -1,4 +1,4 @@
-package com.vishalmamidi.demorestlogger;
+package com.vishalmamidi.aks_deploy;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

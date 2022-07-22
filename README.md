@@ -34,7 +34,7 @@
   ### verify deployment
 
   ```shell
-  kubectl rollout status deployment/demo -n demo-namespace
+  kubectl rollout status deployment/aks-deploy -n demo-namespace
   ```
 
 
@@ -48,30 +48,30 @@
 ## build and tag
 
   ```shell
-  sudo docker build -t ghcr.io/vishalmamidi/demo --build-arg DESCRIPTION=vishal .
+  sudo docker build -t ghcr.io/vishalmamidi/aks-deploy --build-arg DESCRIPTION=vishal .
   ```
 
   ```shell
-  sudo docker inspect ghcr.io/vishalmamidi/demo
+  sudo docker inspect ghcr.io/vishalmamidi/aks-deploy
   ```
 
 ## push tagged container image
 
   ```shell
-  sudo docker push ghcr.io/vishalmamidi/demo
+  sudo docker push ghcr.io/vishalmamidi/aks-deploy
   ```
 
 ## run container image
 
   ```shell
-  sudo docker run -p 8080:8080 vishalmamidi/demo
+  sudo docker run -p 8080:8080 vishalmamidi/aks-deploy
   ```
 
 ## check and stop container
 
 
   ```shell
-  sudo docker stop $(sudo docker ps -q --filter ancestor=vishalmamidi/demo-rest )
+  sudo docker stop $(sudo docker ps -q --filter ancestor=vishalmamidi/aks-deploy )
   ```
 
 or if you know container id
