@@ -15,6 +15,6 @@ public class LogHandler {
         log.info("logging: {}", request);
         return ServerResponse.status(HttpStatus.ACCEPTED)
                 .contentType(APPLICATION_JSON)
-                .body(Mono.just("Awasome!, Deploy Successfull.\ncurrent time:"+ java.time.LocalDateTime.now()), String.class);
+                .body(Mono.just("aks-deploy service deployed successfully.\ncurrent time: "+ java.time.LocalDateTime.now()), String.class);
     }
 }
